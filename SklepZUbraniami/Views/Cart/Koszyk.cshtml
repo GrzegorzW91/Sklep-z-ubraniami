@@ -1,0 +1,38 @@
+﻿@model List<SklepZUbraniami.Models.CartItem>
+@{
+    ViewBag.Title = "Twój koszyk";
+}
+
+<h2>Koszyk</h2>
+
+@if (!Model.Any())
+{
+    <p>Koszyk jest pusty.</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Ilość</th>
+            <th>Suma</th>
+            <th>Akcja</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price zł</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Price* item.Quantity) zł</td>
+                <td>
+                    <a href="@Url.Action("UsunZKoszyka", "Cart", new { id = item.ProductId })"
+                       class="btn btn-danger">Usuń</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <h4>Łącznie: @ViewBag.Suma zł</h4>
+    <a href="/Cart/Finalizuj" class="btn btn-success">Finalizuj zakup</a>
+}

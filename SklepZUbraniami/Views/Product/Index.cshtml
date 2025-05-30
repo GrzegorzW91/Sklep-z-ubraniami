@@ -1,0 +1,32 @@
+﻿@model List<SklepZUbraniami.Models.Product>
+
+<h1>Lista produktów</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Dostępna ilość</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produkt in Model)
+        {
+            <tr>
+                <td>@produkt.Name</td>
+                <td>@produkt.Price zł</td>
+                <td>@produkt.Quantity</td>
+                <td>
+                    <a class="btn btn-primary"
+                       asp-controller="Cart"
+                       asp-action="DodajDoKoszyka"
+                       asp-route-id="@produkt.Id">
+                        Dodaj do koszyka
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿@model List<SklepZUbraniami.Models.CartItem>
+
+<h2>Dziękujemy za zakupy!</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Ilość</th>
+            <th>Cena</th>
+            <th>Suma</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price zł</td>
+                <td>@(item.Price* item.Quantity) zł</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Łącznie: @Model.Sum(i => i.Price * i.Quantity) zł</h4>
+<a class="btn btn-primary" href="/Product">Wróć do sklepu</a>
